@@ -26,8 +26,7 @@ ApplicationWindow {
 
         Menu {
             title: qsTr("&Help")
-            contentData: [actions.contentsAction,
-                actions.aboutAction]
+            contentData: [actions.contentsAction, actions.aboutAction]
         }
     }
 
@@ -39,6 +38,9 @@ ApplicationWindow {
             }
             ToolButton {
                 action: actions.folderAction
+            }
+            ToolButton {
+                action: actions.cataAction
             }
         }
     }
@@ -61,10 +63,13 @@ ApplicationWindow {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
-        stopAction.onToggled: video.stop
-        playAction.onToggled: video.play
+        stopAction.onTriggered: video.stop
+        playAction.onTriggered: video.play
         pauseAction.onToggled: video.pause
         aboutAction.onTriggered: fileo.openAboutDialog()
+        cataAction.onTriggered: {
+            mulu.visible = !mulu.visible //make a hidden directory
+        }
     }
     Fileo {
         id: fileo
@@ -77,11 +82,12 @@ ApplicationWindow {
 
     Mulu {
         id: mulu
-//        width: 100
-//        height: parent.height
-//        anchors.right: parent.right
+        //        width: 100
+        //        height: parent.height
+        //        anchors.right: parent.right
         anchors.fill: parent
-
+        visible: true
+        z: video.z + 1 //make the mulu layer above the video
     }
 
     Vid {

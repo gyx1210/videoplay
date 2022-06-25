@@ -8,14 +8,15 @@ import QtQuick.Controls
 Item {
     property alias openAction: open
     property alias folderAction: folder
+    property alias exitAction: exit
+
     property alias aboutAction: about
     property alias contentsAction: contents
-    property alias exitAction: exit
 
     property alias playAction: playv
     property alias pauseAction: pausev
     property alias stopAction: stopv
-
+    property alias cataAction: catalogue
     Action {
         id: open
         text: qsTr("&Addvideo...")
@@ -59,5 +60,9 @@ Item {
         id: pausev
         text: qsTr("p&ause")
         icon.name: "media-playback-pause"
+    }
+    Action {
+        id: catalogue
+        text: qsTr("catalogue")
     }
 }
