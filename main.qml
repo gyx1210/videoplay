@@ -92,12 +92,11 @@ ApplicationWindow {
 
     Vid {
         id: video
-        anchors.right: mulu.left
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        //        anchors.right: mulu.left
+        //        anchors.left: parent.left
+        //        anchors.top: parent.top
+        //        anchors.bottom: parent.bottom
         anchors.fill: parent
-
         sour: mulu.fpath
         onSourChanged: console.log(sour)
     }

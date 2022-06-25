@@ -1,4 +1,4 @@
-git commit "gyx2" change
 # Added a mulu hide action
 # Changed mulu and video
 # Deleted videoplayer file
+# change file name

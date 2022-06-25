@@ -10,9 +10,10 @@ import QtQuick.Controls
 import QtMultimedia
 
 Item {
+    id: fileMulu
     property var fpath
-    function setVedioFillMode(){
-         mulu.fillMode =  arguments[0]
+    function setVedioFillMode() {
+        mulu.fillMode = arguments[0]
     }
     function setFilesModel() {
         filesModel.clear()
@@ -23,14 +24,20 @@ Item {
             filesModel.append(data)
         }
         mulu.model = filesModel
-        mulu.currentIndex = 0;
+        mulu.currentIndex = 0
     }
     function setFolderModel() {
         folderModel.folder = arguments[0]
         mulu.model = folderModel
         mulu.currentIndex = 0
     }
-    ListView{
+    function nameFile(string) {
+        var str = string.split("/")
+        //        console.log(str[str.length - 1])
+        return str[str.length - 1]
+    }
+
+    ListView {
         id: mulu
         spacing: 10
         anchors.fill: parent
@@ -43,29 +50,17 @@ Item {
             nameFilters: ["*.mp4"]
         }
         delegate: Text {
-            text: filePath //name can c++
+            id: nameF
+            text: nameFile(filePath) //filePath //name can c++
             font.pointSize: 10
+            color: index % 2 == 0 ? "black" : "grey"
             TapHandler {
                 onTapped: {
-                    mulu.currentIndex=index
                     fpath = filePath
-                    console.log(fpath)
-                    playm.source=fpath
-                    playm.play()
+                    fileMulu.visible = false
+                    //                    console.log(fpath)
                 }
-            }
-            MediaPlayer{
-                id:playm
-                audioOutput: AudioOutput{}
-                videoOutput: playv
-            }
-            VideoOutput{
-                id:playv
-                width: 600
-                height: 300
             }
         }
     }
-
-
 }
