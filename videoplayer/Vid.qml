@@ -17,7 +17,9 @@ Item {
 
     VideoOutput {
         id: videoOutput
-        anchors.fill: parent
+//        anchors.fill: parent
+        width: 500
+        height: 300
     }
     function play() {
         if (mediaplayer.playbackState != mediaplayer.PlayingState)

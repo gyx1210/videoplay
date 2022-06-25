@@ -17,6 +17,7 @@ Item {
     function openFolderDialog() {
         folderOpen.open()
     }
+    function openAboutDialog() { about.open(); }
     FileDialog {
         id: fileOpen
         title: "Select some video files"
@@ -30,5 +31,15 @@ Item {
         currentFolder: StandardPaths.writableLocation(
                            StandardPaths.DocumentsLocation)
         title: "Select an video folder"
+    }
+    Dialog {
+        id: about
+        width: 700;height: 270
+        title: qsTr("About")
+        Label {
+            anchors.fill: parent
+            text: qsTr("A QML Videos Viewer\n")
+            horizontalAlignment: Text.AlignHCenter
+        }
     }
 }

@@ -26,7 +26,8 @@ ApplicationWindow {
 
         Menu {
             title: qsTr("&Help")
-            contentData: [actions.contentsAction]
+            contentData: [actions.contentsAction,
+                actions.aboutAction]
         }
     }
 
@@ -63,6 +64,7 @@ ApplicationWindow {
         stopAction.onToggled: video.stop
         playAction.onToggled: video.play
         pauseAction.onToggled: video.pause
+        aboutAction.onTriggered: fileo.openAboutDialog()
     }
     Fileo {
         id: fileo
@@ -75,9 +77,11 @@ ApplicationWindow {
 
     Mulu {
         id: mulu
-        width: 100
-        height: parent.height
-        anchors.right: parent.right
+//        width: 100
+//        height: parent.height
+//        anchors.right: parent.right
+        anchors.fill: parent
+
     }
 
     Vid {
@@ -86,6 +90,8 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        anchors.fill: parent
+
         sour: mulu.fpath
         onSourChanged: console.log(sour)
     }

@@ -57,7 +57,7 @@ Item {
     }
     Action {
         id: pausev
-        text: qsTr("&pause")
+        text: qsTr("p&ause")
         icon.name: "media-playback-pause"
     }
 }
