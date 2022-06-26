@@ -58,11 +58,13 @@ Item {
             text: nameRe(filePath)
             font.pointSize: 10
             color: index % 2 == 0 ? "black" : "grey"
+
             TapHandler {
                 onTapped: {
                     fpath = namehead + filePath
                     fileMulu.visible = false
-                    //                    console.log(fpath)
+                    console.log(fpath)
+                    color:index==mulu.currentIndex?"red":"grey"//点击的视频名字变红，未实现       
                 }
             }
         }

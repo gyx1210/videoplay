@@ -23,6 +23,17 @@ ApplicationWindow {
                 action: actions.exitAction
             }
         }
+        Menu{
+            title: qsTr("&View")
+            //using Action object as menu item directly
+            MenuItem {
+                action: actions.fullAction
+            }
+            MenuItem {
+                action: actions.cataAction
+            }
+
+        }
 
         Menu {
             title: qsTr("&Help")
@@ -63,9 +74,20 @@ ApplicationWindow {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
-        stopAction.onTriggered: video.stop()
-        playAction.onTriggered: video.play()
-        pauseAction.onToggled: video.pause()
+        stopAction.onTriggered:{
+            video.stop()
+            mulu.visible = true
+        }
+        playAction.onTriggered:{
+            video.play()
+            mulu.visible=false
+        }
+        pauseAction.onTriggered:
+        {
+            video.pause()
+            mulu.visible=true
+        }
+
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
             mulu.visible = !mulu.visible //make a hidden directory

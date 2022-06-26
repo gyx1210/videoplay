@@ -10,13 +10,17 @@ Item {
     property alias folderAction: folder
     property alias exitAction: exit
 
+    property alias fullAction:fullScreen
+    property alias cataAction: catalogue
+
     property alias aboutAction: about
     property alias contentsAction: contents
 
     property alias playAction: playv
     property alias pauseAction: pausev
     property alias stopAction: stopv
-    property alias cataAction: catalogue
+
+
     Action {
         id: open
         text: qsTr("&Addvideo...")
@@ -35,9 +39,24 @@ Item {
         text: qsTr("E&xit")
         icon.name: "application-exit"
     }
+
+    Action {
+        id: catalogue
+        text: qsTr("Hideshow&cata")
+    }
+    Action{
+        id:fullScreen
+        text:qsTr("&Full Screen")
+        icon.name:"view-fullscreen"
+        onTriggered: {
+            showFullScreen()
+        }
+    }
+
+
     Action {
         id: contents
-        text: qsTr("&contents")
+        text: qsTr("&Contents")
         icon.name: "help-contents"
     }
 
@@ -60,9 +79,5 @@ Item {
         id: pausev
         text: qsTr("p&ause")
         icon.name: "media-playback-pause"
-    }
-    Action {
-        id: catalogue
-        text: qsTr("catalogue")
     }
 }
