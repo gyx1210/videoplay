@@ -41,6 +41,18 @@ Item {
         return name[name.length - 1]
     } //处理目录文件显示的名字
 
+    Rectangle{
+        id:rec
+        anchors.fill: parent
+        focus:true
+        Keys.onPressed: (event)=>{
+            if(event.key===Qt.Key_Escape){
+                showNormal()
+                event.accepted = true;
+            }
+        }
+    }
+
     ListView {
         id: mulu
         spacing: 10

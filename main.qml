@@ -21,6 +21,7 @@ ApplicationWindow {
             }
             MenuItem {
                 action: actions.exitAction
+                onTriggered: appWindow.close()
             }
         }
         Menu{
@@ -39,6 +40,7 @@ ApplicationWindow {
             title: qsTr("&Help")
             contentData: [actions.contentsAction, actions.aboutAction]
         }
+
     }
 
     header: ToolBar {
@@ -86,12 +88,15 @@ ApplicationWindow {
         {
             video.pause()
             mulu.visible=true
+
         }
 
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
             mulu.visible = !mulu.visible //make a hidden directory
         }
+
+
     }
     Fileo {
         id: fileo
@@ -117,4 +122,5 @@ ApplicationWindow {
         anchors.fill: parent
         sour: mulu.fpath
     }
+
 }

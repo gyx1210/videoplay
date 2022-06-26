@@ -46,11 +46,9 @@ Item {
     }
     Action{
         id:fullScreen
-        text:qsTr("&Full Screen")
+        text:qsTr("&FullScreen")
         icon.name:"view-fullscreen"
-        onTriggered: {
-            showFullScreen()
-        }
+        onTriggered: showFullScreen()
     }
 
 
