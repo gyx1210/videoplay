@@ -73,23 +73,26 @@ ApplicationWindow {
     }
     Fileo {
         id: fileo
-        fileOpenDialog.onAccepted: mulu.setFilesModel(
-                                       fileOpenDialog.selectedFiles)
+        fileOpenDialog.onAccepted: {
+            mulu.setFilesModel(fileOpenDialog.selectedFiles)
+            mulu.visible = true
+        }
 
-        folderOpenDialog.onAccepted: mulu.setFolderModel(
-                                         folderOpenDialog.selectedFolder)
+        folderOpenDialog.onAccepted: {
+            mulu.setFolderModel(folderOpenDialog.selectedFolder)
+            mulu.visible = true
+        }
     }
-
     Mulu {
         id: mulu
         anchors.fill: parent
         visible: true
+        z: video.z + 1
     }
 
     Vid {
         id: video
         anchors.fill: parent
         sour: mulu.fpath
-        onSourChanged: console.log(sour)
     }
 }

@@ -13,6 +13,9 @@ Item {
         source: sour
         audioOutput: AudioOutput {}
         videoOutput: videoOutput
+        onSourceChanged: {
+            mediaplayer.play()
+        }
     }
 
     VideoOutput {

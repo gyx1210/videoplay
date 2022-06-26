@@ -17,7 +17,9 @@ Item {
     function openFolderDialog() {
         folderOpen.open()
     }
-    function openAboutDialog() { about.open(); }
+    function openAboutDialog() {
+        about.open()
+    }
     FileDialog {
         id: fileOpen
         title: "Select some video files"
@@ -34,7 +36,8 @@ Item {
     }
     Dialog {
         id: about
-        width: 700;height: 270
+        width: 700
+        height: 270
         title: qsTr("About")
         Label {
             anchors.fill: parent
