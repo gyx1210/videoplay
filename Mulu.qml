@@ -31,12 +31,6 @@ Item {
         mulu.model = folderModel
         mulu.currentIndex = 0
     }
-    function nameFile(string) {
-        var str = string.split("/")
-        //        console.log(str[str.length - 1])
-        return str[str.length - 1]
-    }
-
     ListView {
         id: mulu
         spacing: 10
@@ -48,10 +42,11 @@ Item {
         FolderListModel {
             id: folderModel
             nameFilters: ["*.mp4"]
+            showDirs: false
         }
         delegate: Text {
-            id: nameF
-            text: nameFile(filePath) //filePath //name can c++
+            id: filePath
+            text: filePath
             font.pointSize: 10
             color: index % 2 == 0 ? "black" : "grey"
             TapHandler {

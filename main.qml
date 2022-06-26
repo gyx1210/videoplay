@@ -63,9 +63,9 @@ ApplicationWindow {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
-        stopAction.onTriggered: video.stop
-        playAction.onTriggered: video.play
-        pauseAction.onToggled: video.pause
+        stopAction.onTriggered: video.stop()
+        playAction.onTriggered: video.play()
+        pauseAction.onToggled: video.pause()
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
             mulu.visible = !mulu.visible //make a hidden directory
@@ -82,20 +82,12 @@ ApplicationWindow {
 
     Mulu {
         id: mulu
-        //        width: 100
-        //        height: parent.height
-        //        anchors.right: parent.right
         anchors.fill: parent
         visible: true
-        z: video.z + 1 //make the mulu layer above the video
     }
 
     Vid {
         id: video
-        //        anchors.right: mulu.left
-        //        anchors.left: parent.left
-        //        anchors.top: parent.top
-        //        anchors.bottom: parent.bottom
         anchors.fill: parent
         sour: mulu.fpath
         onSourChanged: console.log(sour)
