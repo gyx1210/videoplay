@@ -21,6 +21,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Actions.qml \
-    Fileo.qml \
-    Mulu.qml \
-    Vid.qml
+    Content.qml \
+    Open.qml \
+    PlaySlider.qml \
+    Playerv.qml

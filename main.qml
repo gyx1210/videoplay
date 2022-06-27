@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtMultimedia
 
 ApplicationWindow {
     id: appWindow
@@ -59,68 +60,102 @@ ApplicationWindow {
     }
 
     footer: ToolBar {
-        RowLayout {
-            anchors.centerIn: parent
-            ToolButton {
-                action: actions.pauseAction
+        ColumnLayout{
+            anchors.fill: parent
+            anchors.leftMargin: 5
+            anchors.rightMargin: 5
+            spacing: 30
+            PlaySlider{
+                Layout.fillWidth: true
+                mediaPlayer: mediaPlayer
             }
-            ToolButton {
-                action: actions.playAction
-            }
-            ToolButton {
-                action: actions.stopAction
+
+            RowLayout {
+                anchors.centerIn: parent
+//                RowLayout {
+//                    anchors.bottom: parent.bottom
+//                    anchors.left: parent.left
+//                    Text {
+//                        text: "Rate " + slider.value + "x"
+//                    }
+//                    Slider {
+//                        id: slider
+//                        Layout.fillWidth: true
+//                        snapMode: Slider.SnapOnRelease
+//                        enabled: true
+//                        from: 0.5
+//                        to: 2.5
+//                        stepSize: 0.5
+//                        value: 1.0
+
+//                        onMoved: { mediaPlayer.setPlaybackRate(value) }
+//                    }
+
+//                }
+                ToolButton {
+                    action: actions.pauseAction
+                }
+                ToolButton {
+                    action: actions.playAction
+                }
+                ToolButton {
+                    action: actions.stopAction
+                }
             }
         }
+
+
     }
     Actions {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
         stopAction.onTriggered:{
-            video.stop()
-            mulu.visible = true
+            playerv.stop()
+            content.visible = true
         }
         playAction.onTriggered:{
-            video.play()
-            mulu.visible=false
+            playerv.play()
+            content.visible=false
         }
         pauseAction.onTriggered:
         {
-            video.pause()
-            mulu.visible=true
-
+            playerv.pause()
+            content.visible=true
         }
 
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
-            mulu.visible = !mulu.visible //make a hidden directory
+            content.visible = !content.visible //make a hidden directory
         }
 
 
     }
-    Fileo {
+    Open {
         id: fileo
         fileOpenDialog.onAccepted: {
-            mulu.setFilesModel(fileOpenDialog.selectedFiles)
-            mulu.visible = true
+            content.setFilesModel(fileOpenDialog.selectedFiles)
+            content.visible = true
         }
 
         folderOpenDialog.onAccepted: {
-            mulu.setFolderModel(folderOpenDialog.selectedFolder)
-            mulu.visible = true
+            content.setFolderModel(folderOpenDialog.selectedFolder)
+            content.visible = true
         }
     }
-    Mulu {
-        id: mulu
+    Content {
+        id: content
         anchors.fill: parent
         visible: true
-        z: video.z + 1
+        z: playerv.z + 1
+
     }
 
-    Vid {
-        id: video
+    Playerv {
+        id: playerv
         anchors.fill: parent
-        sour: mulu.fpath
+        sour: content.fpath
     }
+
 
 }
