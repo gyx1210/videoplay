@@ -10,7 +10,7 @@ Item {
     property alias folderAction: folder
     property alias exitAction: exit
 
-    property alias fullAction:fullScreen
+    property alias fullAction: fullScreen
     property alias cataAction: catalogue
 
     property alias aboutAction: about
@@ -19,7 +19,6 @@ Item {
     property alias playAction: playv
     property alias pauseAction: pausev
     property alias stopAction: stopv
-
 
     Action {
         id: open
@@ -44,13 +43,12 @@ Item {
         id: catalogue
         text: qsTr("Hideshow&cata")
     }
-    Action{
-        id:fullScreen
-        text:qsTr("&FullScreen")
-        icon.name:"view-fullscreen"
+    Action {
+        id: fullScreen
+        text: qsTr("&FullScreen")
+        icon.name: "view-fullscreen"
         onTriggered: showFullScreen()
     }
-
 
     Action {
         id: contents

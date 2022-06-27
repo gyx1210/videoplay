@@ -41,18 +41,17 @@ Item {
         return name[name.length - 1]
     } //处理目录文件显示的名字
 
-//    Rectangle{
-//        id:rec
-//        anchors.fill: parent
-//        focus:true
-//        Keys.onPressed: (event)=>{
-//            if(event.key===Qt.Key_Escape){
-//                showNormal()
-//                event.accepted = true;
-//            }
-//        }
-//    }
-
+    //    Rectangle{
+    //        id:rec
+    //        anchors.fill: parent
+    //        focus:true
+    //        Keys.onPressed: (event)=>{
+    //            if(event.key===Qt.Key_Escape){
+    //                showNormal()
+    //                event.accepted = true;
+    //            }
+    //        }
+    //    }
     ListView {
         id: content
         spacing: 10
@@ -76,7 +75,7 @@ Item {
                     fpath = namehead + filePath
                     fileContent.visible = false
                     console.log(fpath)
-                    color:index==content.currentIndex?"red":"grey"//点击的视频名字变红，未实现
+                    color = index == content.currentIndex ? "red" : "grey" //点击的视频名字变红，未实现
                 }
             }
         }

@@ -5,13 +5,14 @@ import QtMultimedia
 
 ApplicationWindow {
     id: appWindow
+    property bool fullScreen: false
     visible: true
     width: 600
     height: 400
 
     menuBar: MenuBar {
         id: appMenuBar
-
+        visible: !fullScreen
         Menu {
             title: qsTr("&File")
             MenuItem {
@@ -25,7 +26,7 @@ ApplicationWindow {
                 onTriggered: appWindow.close()
             }
         }
-        Menu{
+        Menu {
             title: qsTr("&View")
             //using Action object as menu item directly
             MenuItem {
@@ -34,18 +35,17 @@ ApplicationWindow {
             MenuItem {
                 action: actions.cataAction
             }
-
         }
 
         Menu {
             title: qsTr("&Help")
             contentData: [actions.contentsAction, actions.aboutAction]
         }
-
     }
 
     header: ToolBar {
         id: appToolBar
+        visible: !fullScreen
         RowLayout {
             ToolButton {
                 action: actions.openAction
@@ -60,38 +60,39 @@ ApplicationWindow {
     }
 
     footer: ToolBar {
-        ColumnLayout{
+        visible: !fullScreen
+        ColumnLayout {
             anchors.fill: parent
             anchors.leftMargin: 5
             anchors.rightMargin: 5
             spacing: 30
-            PlaySlider{
+            PlaySlider {
                 Layout.fillWidth: true
                 mediaPlayer: mediaPlayer
             }
 
             RowLayout {
                 anchors.centerIn: parent
-//                RowLayout {
-//                    anchors.bottom: parent.bottom
-//                    anchors.left: parent.left
-//                    Text {
-//                        text: "Rate " + slider.value + "x"
-//                    }
-//                    Slider {
-//                        id: slider
-//                        Layout.fillWidth: true
-//                        snapMode: Slider.SnapOnRelease
-//                        enabled: true
-//                        from: 0.5
-//                        to: 2.5
-//                        stepSize: 0.5
-//                        value: 1.0
+                //                RowLayout {
+                //                    anchors.bottom: parent.bottom
+                //                    anchors.left: parent.left
+                //                    Text {
+                //                        text: "Rate " + slider.value + "x"
+                //                    }
+                //                    Slider {
+                //                        id: slider
+                //                        Layout.fillWidth: true
+                //                        snapMode: Slider.SnapOnRelease
+                //                        enabled: true
+                //                        from: 0.5
+                //                        to: 2.5
+                //                        stepSize: 0.5
+                //                        value: 1.0
 
-//                        onMoved: { mediaPlayer.setPlaybackRate(value) }
-//                    }
+                //                        onMoved: { mediaPlayer.setPlaybackRate(value) }
+                //                    }
 
-//                }
+                //                }
                 ToolButton {
                     action: actions.pauseAction
                 }
@@ -103,33 +104,28 @@ ApplicationWindow {
                 }
             }
         }
-
-
     }
     Actions {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
-        stopAction.onTriggered:{
+        stopAction.onTriggered: {
             playerv.stop()
             content.visible = true
         }
-        playAction.onTriggered:{
+        playAction.onTriggered: {
             playerv.play()
-            content.visible=false
+            content.visible = false
         }
-        pauseAction.onTriggered:
-        {
+        pauseAction.onTriggered: {
             playerv.pause()
-            content.visible=true
+            content.visible = true
         }
 
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
             content.visible = !content.visible //make a hidden directory
         }
-
-
     }
     Open {
         id: fileo
@@ -148,7 +144,6 @@ ApplicationWindow {
         anchors.fill: parent
         visible: true
         z: playerv.z + 1
-
     }
 
     Playerv {
@@ -156,6 +151,13 @@ ApplicationWindow {
         anchors.fill: parent
         sour: content.fpath
     }
-
-
+    TapHandler {
+        onDoubleTapped: {
+            if (fullScreen = !fullScreen) {
+                showFullScreen()
+            } else {
+                showNormal()
+            }
+        }
+    }
 }
