@@ -144,13 +144,16 @@ ApplicationWindow {
     Open {
         id: fileo
         fileOpenDialog.onAccepted: {
+
             content.setFilesModel(fileOpenDialog.selectedFiles)
             content.visible = true
+            content.addFile = true
         }
 
         folderOpenDialog.onAccepted: {
             content.setFolderModel(folderOpenDialog.selectedFolder)
             content.visible = true
+            content.addFile = false
         }
     }
     Content {

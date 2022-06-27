@@ -1,5 +1,4 @@
 
-
 /*
   this is the file directory
 */
@@ -13,23 +12,28 @@ Item {
     id: fileContent
     property var fpath
     property var namehead
+    property bool addFile: false //用多选文件添加文件，不是目录打开
     //用于控制路径名，folder打开路径名有问题，视频播放不了
     function setVedioFillMode() {
         content.fillMode = arguments[0]
     }
     function setFilesModel() {
-        filesModel.clear()
+        //filesModel.clear()//可以清空原本的内容
         for (var i = 0; i < arguments[0].length; i++) {
             var data = {
                 "filePath": arguments[0][i]
             }
-            filesModel.append(data)
+            if (!addFile)
+                filesModel.append(data)
+            else
+                filesModel.insert(0, data)
         }
         content.model = filesModel
         content.currentIndex = 0
         namehead = ""
     }
     function setFolderModel() {
+        filesModel.clear()
         folderModel.folder = arguments[0]
         content.model = folderModel
         content.currentIndex = 0
@@ -41,33 +45,15 @@ Item {
         return name[name.length - 1]
     } //处理目录文件显示的名字
 
-    //    Rectangle{
-    //        id:rec
-    //        anchors.fill: parent
-    //        focus:true
-    //        Keys.onPressed: (event)=>{
-    //            if(event.key===Qt.Key_Escape){
-    //                showNormal()
-    //                event.accepted = true;
-    //            }
-    //        }
-    //    }
-
-    //    Playerv {
-    //        id: playerv
-    //        anchors.fill: parent
-    //        sour: content.fpath
-    //    }
     ListView {
         id: content
         anchors.fill: parent
         ListModel {
             id: filesModel
         }
-
         FolderListModel {
             id: folderModel
-            nameFilters: ["*.mp4"]
+            nameFilters: ["*.mp4", "*.flv", "*.mkv", "*.mov", "*.ts", "*.m3u8"]
             showDirs: false //禁止显示目录文件
         }
         delegate: Rectangle {
@@ -86,9 +72,8 @@ Item {
             TapHandler {
                 onTapped: {
                     fpath = namehead + filePath
-                    content.visible = false
+                    fileContent.visible = false
                     console.log(fpath)
-                    //                    color:index===currentIndex?"red":"grey"//点击的视频名字变红，未实现
                 }
             }
         }
