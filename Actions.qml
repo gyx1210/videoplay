@@ -38,16 +38,19 @@ Item {
         id: exit
         text: qsTr("E&xit")
         icon.name: "application-exit"
+        shortcut: "Ctrl + e"
     }
 
     Action {
         id: catalogue
-        text: qsTr("Hideshow&cata")
+        text: qsTr("Hidesho&wcata")
+        shortcut: "Ctrl + w"
     }
     Action {
         id: fullScreen
         text: qsTr("&FullScreen")
         icon.name: "view-fullscreen"
+        shortcut: "Ctrl + f"
         onTriggered: showFullScreen()
     }
 
@@ -55,27 +58,31 @@ Item {
         id: contents
         text: qsTr("&Contents")
         icon.name: "help-contents"
+        shortcut: "Ctrl + c"
     }
 
     Action {
         id: about
         text: qsTr("&About")
         icon.name: "help-about"
+        shortcut: "Ctrl + a"
     }
     Action {
         id: playv
-        text: qsTr("&play")
+//        text: qsTr("&play")
         icon.name: "media-playback-start"
     }
     Action {
         id: stopv
-        text: qsTr("&stop")
+//        text: qsTr("&stop")
         icon.name: "media-playback-stop"
+        shortcut: "Ctrl + s"
     }
     Action {
         id: pausev
-        text: qsTr("p&ause")
+//        text: qsTr("p&ause")
         icon.name: "media-playback-pause"
+        shortcut: "Ctrl + p"
     }
     Action {
         id: ratev

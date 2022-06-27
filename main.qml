@@ -10,18 +10,16 @@ ApplicationWindow {
     width: 600
     height: 400
 
-    background:Rectangle{
-        color:"black"
+    background: Rectangle{
+        color: "black"
     }
 
     menuBar: MenuBar {
         id: appMenuBar
         visible: !fullScreen
-        background:Rectangle{
-            color:"#e0ffff"
-            }
-
-
+        background: Rectangle{
+            color: "#e0ffff"
+        }
         Menu {
             title: qsTr("&File")
             MenuItem {
@@ -51,17 +49,16 @@ ApplicationWindow {
             contentData: [actions.contentsAction, actions.aboutAction]
         }
     }
+
     header: ToolBar {
         id: appToolBar
         visible: !fullScreen
         background: Rectangle{
             color: "#87cefa"
         }
-
         RowLayout {
             ToolButton {
                 action: actions.openAction
-
             }
             ToolButton {
                 action: actions.folderAction
@@ -76,36 +73,16 @@ ApplicationWindow {
         visible: !fullScreen
         ColumnLayout {
             anchors.fill: parent
-            //            anchors.leftMargin: 5
-            //            anchors.rightMargin: 5
-            //            spacing: 30
+            anchors.leftMargin: 5
+            anchors.rightMargin: 5
+            spacing: 30
             PlaySlider {
                 Layout.fillWidth: true
-                mediaPlayer: mediaPlayer
+                mediaPlayer:playerv.mediaplayer
             }
 
             RowLayout {
                 anchors.centerIn: parent
-                //                RowLayout {
-                //                    anchors.bottom: parent.bottom
-                //                    anchors.left: parent.left
-                //                    Text {
-                //                        text: "Rate " + slider.value + "x"
-                //                    }
-                //                    Slider {
-                //                        id: slider
-                //                        Layout.fillWidth: true
-                //                        snapMode: Slider.SnapOnRelease
-                //                        enabled: true
-                //                        from: 0.5
-                //                        to: 2.5
-                //                        stepSize: 0.5
-                //                        value: 1.0
-
-                //                        onMoved: { mediaPlayer.setPlaybackRate(value) }
-                //                    }
-
-                //                }
                 ToolButton {
                     action: actions.pauseAction
                 }
@@ -171,7 +148,6 @@ ApplicationWindow {
         anchors.fill: parent
         visible: true
         z: playerv.z + 1
-
     }
 
     Playerv {

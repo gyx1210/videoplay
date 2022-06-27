@@ -9,6 +9,7 @@ import QtMultimedia
 Item {
     property var sour
     property alias rate: mediaplayer.playbackRate
+    property MediaPlayer mediaplayer:mediaplayer
     function play() {
         if (mediaplayer.playbackState != mediaplayer.PlayingState)
             mediaplayer.play()
@@ -29,11 +30,11 @@ Item {
         videoOutput: videoOutput
         onSourceChanged: {
             mediaplayer.play()
-            console.log(MediaMetaData)
+//            console.log(MediaMetaData)
         }
-        onPositionChanged: {
-            console.log(position)
-        } //视频播放时间
+//        onPositionChanged: {
+//            console.log(position)
+//        } //视频播放时间
     }
     VideoOutput {
         id: videoOutput

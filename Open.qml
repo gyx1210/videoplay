@@ -26,7 +26,7 @@ Item {
         currentFolder: StandardPaths.writableLocation(
                            StandardPaths.DocumentsLocation)
         fileMode: FileDialog.OpenFiles
-        nameFilters: ["Video files (*.mp4 *mkv *flv *mov *ts *m3u8)"]
+        nameFilters: ["Video files (*.mp4)"]
     }
     FolderDialog {
         id: folderOpen
