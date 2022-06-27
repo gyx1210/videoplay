@@ -13,23 +13,28 @@ Item {
     id: fileContent
     property var fpath
     property var namehead
+    property bool addFile: false //用多选文件添加文件，不是目录打开
     //用于控制路径名，folder打开路径名有问题，视频播放不了
     function setVedioFillMode() {
         content.fillMode = arguments[0]
     }
     function setFilesModel() {
-        filesModel.clear()
+
         for (var i = 0; i < arguments[0].length; i++) {
             var data = {
                 "filePath": arguments[0][i]
             }
-            filesModel.append(data)
+            if (!addFile)
+                filesModel.append(data)
+            else
+                filesModel.insert(0, data)
         }
         content.model = filesModel
         content.currentIndex = 0
         namehead = ""
     }
     function setFolderModel() {
+        filesModel.clear()
         folderModel.folder = arguments[0]
         content.model = folderModel
         content.currentIndex = 0

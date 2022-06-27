@@ -10,14 +10,14 @@ ApplicationWindow {
     width: 600
     height: 400
 
-    background: Rectangle{
+    background: Rectangle {
         color: "black"
     }
 
     menuBar: MenuBar {
         id: appMenuBar
         visible: !fullScreen
-        background: Rectangle{
+        background: Rectangle {
             color: "#e0ffff"
         }
         Menu {
@@ -53,7 +53,7 @@ ApplicationWindow {
     header: ToolBar {
         id: appToolBar
         visible: !fullScreen
-        background: Rectangle{
+        background: Rectangle {
             color: "#87cefa"
         }
         RowLayout {
@@ -75,10 +75,9 @@ ApplicationWindow {
             anchors.fill: parent
             anchors.leftMargin: 5
             anchors.rightMargin: 5
-            spacing: 30
             PlaySlider {
                 Layout.fillWidth: true
-                mediaPlayer:playerv.mediaplayer
+                mediaPlayer: playerv.mediaplayer
             }
 
             RowLayout {
@@ -116,7 +115,6 @@ ApplicationWindow {
             content.visible = true
         }
         rateAction.onTriggered: {
-            //            playerv.rate = 2
             if (playerv.rate == 2) {
                 playerv.rate = 1
                 rateAction.text = qsTr("x1")
@@ -136,11 +134,13 @@ ApplicationWindow {
         fileOpenDialog.onAccepted: {
             content.setFilesModel(fileOpenDialog.selectedFiles)
             content.visible = true
+            content.addFile = true
         }
 
         folderOpenDialog.onAccepted: {
             content.setFolderModel(folderOpenDialog.selectedFolder)
             content.visible = true
+            content.addFile = false
         }
     }
     Content {
