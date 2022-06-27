@@ -10,9 +10,18 @@ ApplicationWindow {
     width: 600
     height: 400
 
+    background:Rectangle{
+        color:"black"
+    }
+
     menuBar: MenuBar {
         id: appMenuBar
         visible: !fullScreen
+        background:Rectangle{
+            color:"#e0ffff"
+            }
+
+
         Menu {
             title: qsTr("&File")
             MenuItem {
@@ -42,13 +51,17 @@ ApplicationWindow {
             contentData: [actions.contentsAction, actions.aboutAction]
         }
     }
-
     header: ToolBar {
         id: appToolBar
         visible: !fullScreen
+        background: Rectangle{
+            color: "#87cefa"
+        }
+
         RowLayout {
             ToolButton {
                 action: actions.openAction
+
             }
             ToolButton {
                 action: actions.folderAction
@@ -144,16 +157,13 @@ ApplicationWindow {
     Open {
         id: fileo
         fileOpenDialog.onAccepted: {
-
             content.setFilesModel(fileOpenDialog.selectedFiles)
             content.visible = true
-            content.addFile = true
         }
 
         folderOpenDialog.onAccepted: {
             content.setFolderModel(folderOpenDialog.selectedFolder)
             content.visible = true
-            content.addFile = false
         }
     }
     Content {
@@ -161,6 +171,7 @@ ApplicationWindow {
         anchors.fill: parent
         visible: true
         z: playerv.z + 1
+
     }
 
     Playerv {
