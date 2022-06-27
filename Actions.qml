@@ -19,6 +19,7 @@ Item {
     property alias playAction: playv
     property alias pauseAction: pausev
     property alias stopAction: stopv
+    property alias rateAction: ratev
 
     Action {
         id: open
@@ -75,5 +76,9 @@ Item {
         id: pausev
         text: qsTr("p&ause")
         icon.name: "media-playback-pause"
+    }
+    Action {
+        id: ratev
+        text: qsTr("x1")
     }
 }

@@ -8,21 +8,7 @@ import QtMultimedia
 
 Item {
     property var sour
-    MediaPlayer {
-        id: mediaplayer
-        source: sour
-        audioOutput: AudioOutput {}
-        videoOutput: videoOutput
-        onSourceChanged: {
-            mediaplayer.play()
-        }
-    }
-
-
-    VideoOutput {
-        id: videoOutput
-        anchors.fill: parent
-    }
+    property alias rate: mediaplayer.playbackRate
     function play() {
         if (mediaplayer.playbackState != mediaplayer.PlayingState)
             mediaplayer.play()
@@ -32,10 +18,25 @@ Item {
             mediaplayer.stop()
     }
     function pause() {
-        if (mediaplayer.playbackState != mediaplayer.PausedState)
-        {
+        if (mediaplayer.playbackState != mediaplayer.PausedState) {
             mediaplayer.pause()
         }
-
+    }
+    MediaPlayer {
+        id: mediaplayer
+        source: sour
+        audioOutput: AudioOutput {}
+        videoOutput: videoOutput
+        onSourceChanged: {
+            mediaplayer.play()
+            console.log(MediaMetaData)
+        }
+        onPositionChanged: {
+            console.log(position)
+        } //视频播放时间
+    }
+    VideoOutput {
+        id: videoOutput
+        anchors.fill: parent
     }
 }

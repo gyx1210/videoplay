@@ -63,9 +63,9 @@ ApplicationWindow {
         visible: !fullScreen
         ColumnLayout {
             anchors.fill: parent
-            anchors.leftMargin: 5
-            anchors.rightMargin: 5
-            spacing: 30
+            //            anchors.leftMargin: 5
+            //            anchors.rightMargin: 5
+            //            spacing: 30
             PlaySlider {
                 Layout.fillWidth: true
                 mediaPlayer: mediaPlayer
@@ -102,6 +102,9 @@ ApplicationWindow {
                 ToolButton {
                     action: actions.stopAction
                 }
+                ToolButton {
+                    action: actions.rateAction
+                }
             }
         }
     }
@@ -109,6 +112,7 @@ ApplicationWindow {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
         folderAction.onTriggered: fileo.openFolderDialog()
+
         stopAction.onTriggered: {
             playerv.stop()
             content.visible = true
@@ -120,6 +124,16 @@ ApplicationWindow {
         pauseAction.onTriggered: {
             playerv.pause()
             content.visible = true
+        }
+        rateAction.onTriggered: {
+            //            playerv.rate = 2
+            if (playerv.rate == 2) {
+                playerv.rate = 1
+                rateAction.text = qsTr("x1")
+            } else {
+                playerv.rate = 2
+                rateAction.text = qsTr("x2")
+            }
         }
 
         aboutAction.onTriggered: fileo.openAboutDialog()

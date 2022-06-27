@@ -41,24 +41,23 @@ Item {
         return name[name.length - 1]
     } //处理目录文件显示的名字
 
-//    Rectangle{
-//        id:rec
-//        anchors.fill: parent
-//        focus:true
-//        Keys.onPressed: (event)=>{
-//            if(event.key===Qt.Key_Escape){
-//                showNormal()
-//                event.accepted = true;
-//            }
-//        }
-//    }
+    //    Rectangle{
+    //        id:rec
+    //        anchors.fill: parent
+    //        focus:true
+    //        Keys.onPressed: (event)=>{
+    //            if(event.key===Qt.Key_Escape){
+    //                showNormal()
+    //                event.accepted = true;
+    //            }
+    //        }
+    //    }
 
-//    Playerv {
-//        id: playerv
-//        anchors.fill: parent
-//        sour: content.fpath
-//    }
-
+    //    Playerv {
+    //        id: playerv
+    //        anchors.fill: parent
+    //        sour: content.fpath
+    //    }
     ListView {
         id: content
         anchors.fill: parent
@@ -71,25 +70,25 @@ Item {
             nameFilters: ["*.mp4"]
             showDirs: false //禁止显示目录文件
         }
-        delegate:Rectangle{
-                id:re
-                width:1/3*parent.width
-                height:50
-                anchors.right: parent.right
-                Text {
-                    id:text
-                    anchors.centerIn: parent
-                    text: nameRe(filePath)
-                    font.pointSize: 15
-                    }
-                color: index % 2 == 0 ? "lightcyan" : "white"
+        delegate: Rectangle {
+            id: re
+            width: 1 / 3 * parent.width
+            height: 50
+            anchors.right: parent.right
+            Text {
+                id: text
+                anchors.centerIn: parent
+                text: nameRe(filePath)
+                font.pointSize: 15
+            }
+            color: index % 2 == 0 ? "lightcyan" : "white"
 
             TapHandler {
                 onTapped: {
                     fpath = namehead + filePath
-                    fileMulu.visible = false
-                    console.log(fpath);
-//                    color:index===currentIndex?"red":"grey"//点击的视频名字变红，未实现
+                    content.visible = false
+                    console.log(fpath)
+                    //                    color:index===currentIndex?"red":"grey"//点击的视频名字变红，未实现
                 }
             }
         }
