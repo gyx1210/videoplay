@@ -74,20 +74,31 @@ Item {
             height: 50
             anchors.right: parent.right
             Text {
-                id: text
+                id: te
                 anchors.centerIn: parent
                 text: nameRe(filePath)
                 font.pointSize: 15
+                color: mouse.hovered ? "red" : "black"   ////当鼠标停留在当前项时，字体颜色变大
+                HoverHandler {
+                    id: textMouse
+                    acceptedDevices: PointerDevice.Mouse
+                }
             }
             color: index % 2 == 0 ? "lightcyan" : "white"
             opacity: 0.4
+            scale:mouse.hovered ? 1.35 : 1    //当鼠标停留在当前项时，当前项变大
+
+            HoverHandler {
+                id: mouse
+                acceptedDevices: PointerDevice.Mouse
+            }
+
 
             TapHandler {
                 onTapped: {
                     fpath = namehead + filePath
                     fileContent.visible = false
                     console.log(fpath)
-                    //                    color:index===currentIndex?"red":"grey"//点击的视频名字变红，未实现
                 }
             }
         }
