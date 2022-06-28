@@ -6,7 +6,8 @@ SOURCES += \
 resources.files = main.qml \
 ./
 resources.prefix = /$${TARGET}
-RESOURCES += resources
+RESOURCES += resources \
+    img.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -24,4 +25,5 @@ DISTFILES += \
     Content.qml \
     Open.qml \
     PlaySlider.qml \
-    Playerv.qml
+    Playerv.qml \
+    SoundSlider.qml

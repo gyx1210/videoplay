@@ -1,5 +1,3 @@
-
-
 /*
   this is the file directory
 */

@@ -6,7 +6,7 @@ import QtMultimedia
 
 Item {
     id: root
-    implicitHeight: 20
+    implicitHeight: 1
 
     required property MediaPlayer mediaPlayer
 
@@ -14,7 +14,7 @@ Item {
         anchors.fill: parent
         Text{
             id:time
-            anchors.left: parent.left
+            //anchors.left: parent.left
             color: "grey"
             text: {
                 var minute=Math.floor(mediaPlayer.position/60000)
@@ -37,7 +37,7 @@ Item {
         }
         Text{
             id:allTime
-            anchors.right: parent.right
+            //anchors.right: parent.right
             color: "grey"
             text: //mediaPlayer.duration
                 {

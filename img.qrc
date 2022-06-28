@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>SoundOn.webp</file>
+        <file>SoundTurnoff.webp</file>
+    </qresource>
+</RCC>

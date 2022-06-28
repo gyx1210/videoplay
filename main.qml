@@ -73,15 +73,19 @@ ApplicationWindow {
         visible: !fullScreen
         ColumnLayout {
             anchors.fill: parent
+            anchors.topMargin: 6
             anchors.leftMargin: 5
             anchors.rightMargin: 5
+            spacing: 25
             PlaySlider {
                 Layout.fillWidth: true
                 mediaPlayer: playerv.mediaplayer
             }
 
+
             RowLayout {
-                anchors.centerIn: parent
+
+//                anchors.centerIn: parent
                 ToolButton {
                     action: actions.pauseAction
                 }
@@ -93,6 +97,10 @@ ApplicationWindow {
                 }
                 ToolButton {
                     action: actions.rateAction
+                }
+                SoundSlider{
+                    id:soundSlider
+                    width: 1
                 }
             }
         }
@@ -114,15 +122,56 @@ ApplicationWindow {
             playerv.pause()
             content.visible = true
         }
+//        rateAction.onTriggered: {
+//            if (playerv.rate == 2) {
+//                playerv.rate = 1
+//                rateAction.text = qsTr("x1")
+//            } else {
+//                playerv.rate = 2
+//                rateAction.text = qsTr("x2")
+//            }
+//        }
         rateAction.onTriggered: {
-            if (playerv.rate == 2) {
-                playerv.rate = 1
-                rateAction.text = qsTr("x1")
-            } else {
-                playerv.rate = 2
-                rateAction.text = qsTr("x2")
+            popup.open()
+        }
+        Popup{
+            id:popup
+            padding:0
+    //            parent: /*Overlay.overlay*/actions.rateAction
+    //            //anchors.left: parent.right
+            background: Rectangle{
+                implicitWidth: 20
+                implicitHeight: 20
+
+                color: "white"
+            }
+            contentItem: ColumnLayout{
+                Button{
+                    text: qsTr("x1")
+                    onClicked: {
+                        playerv.rate = 1
+                        popup.close()
+                        actions.rateAction.text = qsTr("rate_x1")
+                    }
+                }
+                Button{
+                    text: qsTr("x2")
+                    onClicked: {
+                        playerv.rate = 2
+                        popup.close()
+                        actions.rateAction.text = qsTr("rate_x2")
+                    }
+                }
             }
         }
+
+
+
+
+
+
+
+
 
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
@@ -154,6 +203,8 @@ ApplicationWindow {
         id: playerv
         anchors.fill: parent
         sour: content.fpath
+        volume: soundSlider.volume
+        muted: soundSlider.muted
     }
     TapHandler {
         onDoubleTapped: {

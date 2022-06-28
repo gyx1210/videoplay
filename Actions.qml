@@ -69,23 +69,20 @@ Item {
     }
     Action {
         id: playv
-//        text: qsTr("&play")
         icon.name: "media-playback-start"
     }
     Action {
         id: stopv
-//        text: qsTr("&stop")
         icon.name: "media-playback-stop"
         shortcut: "Ctrl + s"
     }
     Action {
         id: pausev
-//        text: qsTr("p&ause")
         icon.name: "media-playback-pause"
         shortcut: "Ctrl + p"
     }
     Action {
         id: ratev
-        text: qsTr("x1")
+        text: qsTr("rate")
     }
 }
