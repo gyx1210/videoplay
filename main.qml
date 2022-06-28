@@ -7,8 +7,8 @@ ApplicationWindow {
     id: appWindow
     property bool fullScreen: false
     visible: true
-    width: 600
-    height: 400
+    width: 1000
+    height: 800
 
     background: Rectangle {
         color: "black"
@@ -191,5 +191,60 @@ ApplicationWindow {
                 showNormal()
             }
         }
+    }
+    TapHandler{
+        acceptedButtons: Qt.RightButton
+        onTapped:{
+            po.open()
+        }
+    }
+//    function getX(event) {
+//        var e = event || window.event;
+//        return e.clientX;
+//    }
+
+//    function getY(event) {
+//        var e = event || window.event;
+//        return e.clientY;
+//    }
+
+    Popup{
+        id:po
+        opacity: 1
+        x:parent.width/2
+        y:parent.height/8
+
+
+        background: Rectangle {
+            implicitWidth: 50
+            implicitHeight: 50
+            color: "white"
+        }
+
+        contentItem: ColumnLayout{
+                MenuItem {
+                    action: actions.openAction
+                }
+                MenuItem {
+                    action: actions.folderAction
+                }
+                MenuItem {
+                    action: actions.exitAction
+                    onTriggered: appWindow.close()
+                }
+                MenuItem {
+                    action: actions.fullAction
+                }
+                MenuItem {
+                    action: actions.cataAction
+                }
+                MenuItem {
+                    action: actions.contentsAction
+                }
+                MenuItem {
+                    action:  actions.aboutAction
+                }
+        }
+
     }
 }
