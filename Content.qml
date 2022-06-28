@@ -1,3 +1,4 @@
+
 /*
   this is the file directory
 */
@@ -76,7 +77,7 @@ Item {
                 anchors.centerIn: parent
                 text: nameRe(filePath)
                 font.pointSize: 15
-                color: mouse.hovered ? "red" : "black"   ////当鼠标停留在当前项时，字体颜色变大
+                color: mouse.hovered ? "red" : "black" ////当鼠标停留在当前项时，字体颜色变化
                 HoverHandler {
                     id: textMouse
                     acceptedDevices: PointerDevice.Mouse
@@ -84,13 +85,12 @@ Item {
             }
             color: index % 2 == 0 ? "lightcyan" : "white"
             opacity: 0.4
-            scale:mouse.hovered ? 1.35 : 1    //当鼠标停留在当前项时，当前项变大
+            scale: mouse.hovered ? 1.35 : 1 //当鼠标停留在当前项时，当前项变大
 
             HoverHandler {
                 id: mouse
                 acceptedDevices: PointerDevice.Mouse
             }
-
 
             TapHandler {
                 onTapped: {

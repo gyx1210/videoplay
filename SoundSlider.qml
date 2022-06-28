@@ -5,36 +5,30 @@ import QtQuick.Layouts
 import QtMultimedia
 
 Item {
-    id:root
-    implicitHeight: 1
+    id: root
+    property real volume: soundSlider.value / 100
+    property bool muted: false
 
-   // required property MediaPlayer mediaPlayer
-    property real volume:soundSlider.value/100
-    property bool muted:false
-
-    RowLayout{
-        anchors.centerIn: parent
-        Button{
-            id:sound
-            width: 20;height: 20;
-            onClicked: {
-                muted=!muted
-            }
-            Image{
-                id:im
-                width: 20;height: 20;
-                source: muted ? "qrc:/SoundTurnoff.webp" : "qrc:/SoundOn.webp"
-            }
+    Button {
+        id: sound
+        width: 20
+        height: 20
+        onClicked: {
+            muted = !muted
         }
-
-        Slider{
-            id:soundSlider
-            enabled: true
-            from:0
-            to:100
-            value: 100
-            //onMoved: mediaPlayer.audioOutput.volume=volume
+        background: Image {
+            id: im
+            width: 20
+            height: 20
+            source: muted ? "qrc:/SoundTurnoff.webp" : "qrc:/SoundOn.webp"
         }
-
+    }
+    Slider {
+        id: soundSlider
+        enabled: true
+        from: 0
+        to: 100
+        value: 100
+        anchors.left: sound.right
     }
 }

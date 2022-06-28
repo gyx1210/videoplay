@@ -9,9 +9,9 @@ import QtQuick.Layouts
 import QtMultimedia
 
 Item {
-    property var sour
+    property string sour: ""
+    property MediaPlayer mediaplayer: mediaplayer
     property alias rate: mediaplayer.playbackRate
-    property MediaPlayer mediaplayer:mediaplayer
     property alias muted: audioOutput.muted
     property alias volume: audioOutput.volume
 
@@ -29,31 +29,23 @@ Item {
         }
     }
 
-
-
-
     MediaPlayer {
         id: mediaplayer
         source: sour
-        audioOutput:audioOutput
+        audioOutput: audioOutput
         videoOutput: videoOutput
+        playbackRate: 1
         onSourceChanged: {
             mediaplayer.play()
         }
     }
-   AudioOutput {
-       id:audioOutput
-       muted: false
-    /*onMutedChanged: {
-        console.log("change muted")
+    AudioOutput {
+        id: audioOutput
+        muted: false
+        volume: 1
     }
-    onVolumeChanged: {
-        console.log("change volume")
-    }*/}
     VideoOutput {
         id: videoOutput
         anchors.fill: parent
     }
-
-
 }

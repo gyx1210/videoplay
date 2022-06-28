@@ -68,24 +68,17 @@ ApplicationWindow {
             }
         }
     }
-
     footer: ToolBar {
-        visible: !fullScreen
+        height: 50
         ColumnLayout {
             anchors.fill: parent
-            anchors.topMargin: 6
-            anchors.leftMargin: 5
-            anchors.rightMargin: 5
-            spacing: 25
             PlaySlider {
-                Layout.fillWidth: true
+                id: playslider
+                width: parent.width
                 mediaPlayer: playerv.mediaplayer
             }
-
-
             RowLayout {
-
-//                anchors.centerIn: parent
+                id: button
                 ToolButton {
                     action: actions.pauseAction
                 }
@@ -96,28 +89,18 @@ ApplicationWindow {
                     action: actions.stopAction
                 }
                 ToolButton {
+                    id: rate
                     action: actions.rateAction
                 }
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-                ToolSeparator{}
-
-
-                SoundSlider{
-                    id:soundSlider
-                    width: 10
-                    anchors.right: parent.right
+                ToolButton {
+                    SoundSlider {
+                        id: soundSlider
+                    }
                 }
-
             }
         }
     }
+
     Actions {
         id: actions
         openAction.onTriggered: fileo.openFileDialog()
@@ -135,31 +118,20 @@ ApplicationWindow {
             playerv.pause()
             content.visible = true
         }
-//        rateAction.onTriggered: {
-//            if (playerv.rate == 2) {
-//                playerv.rate = 1
-//                rateAction.text = qsTr("x1")
-//            } else {
-//                playerv.rate = 2
-//                rateAction.text = qsTr("x2")
-//            }
-//        }
         rateAction.onTriggered: {
             popup.open()
         }
-        Popup{
-            id:popup
-            padding:0
-    //            parent: /*Overlay.overlay*/actions.rateAction
-    //            //anchors.left: parent.right
-            background: Rectangle{
+        Popup {
+            id: popup
+            padding: 0
+            background: Rectangle {
                 implicitWidth: 20
                 implicitHeight: 20
 
                 color: "white"
             }
-            contentItem: ColumnLayout{
-                Button{
+            contentItem: ColumnLayout {
+                Button {
                     text: qsTr("x1")
                     onClicked: {
                         playerv.rate = 1
@@ -167,7 +139,7 @@ ApplicationWindow {
                         actions.rateAction.text = qsTr("rate_x1")
                     }
                 }
-                Button{
+                Button {
                     text: qsTr("x2")
                     onClicked: {
                         playerv.rate = 2
@@ -177,14 +149,6 @@ ApplicationWindow {
                 }
             }
         }
-
-
-
-
-
-
-
-
 
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
