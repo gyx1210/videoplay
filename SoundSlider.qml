@@ -13,7 +13,7 @@ Item {
     property bool muted:false
 
     RowLayout{
-        //anchors.fill: parent
+        anchors.centerIn: parent
         Button{
             id:sound
             width: 20;height: 20;

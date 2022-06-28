@@ -12,8 +12,8 @@ Item {
     property var sour
     property alias rate: mediaplayer.playbackRate
     property MediaPlayer mediaplayer:mediaplayer
-    property alias muted: /*mediaplayer.*/audioOutput.muted
-    property alias volume: /*mediaplayer.*/audioOutput.volume
+    property alias muted: audioOutput.muted
+    property alias volume: audioOutput.volume
 
     function play() {
         if (mediaplayer.playbackState != mediaplayer.PlayingState)
@@ -36,9 +36,6 @@ Item {
         id: mediaplayer
         source: sour
         audioOutput:audioOutput
-
-
-
         videoOutput: videoOutput
         onSourceChanged: {
             mediaplayer.play()
@@ -46,6 +43,7 @@ Item {
     }
    AudioOutput {
        id:audioOutput
+       muted: false
     /*onMutedChanged: {
         console.log("change muted")
     }

@@ -98,10 +98,23 @@ ApplicationWindow {
                 ToolButton {
                     action: actions.rateAction
                 }
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+                ToolSeparator{}
+
+
                 SoundSlider{
                     id:soundSlider
-                    width: 1
+                    width: 10
+                    anchors.right: parent.right
                 }
+
             }
         }
     }
