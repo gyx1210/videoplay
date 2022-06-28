@@ -30,5 +30,6 @@ Item {
         to: 100
         value: 100
         anchors.left: sound.right
+        anchors.top: sound.Center
     }
 }
