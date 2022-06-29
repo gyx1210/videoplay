@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>SoundOn.webp</file>
-        <file>SoundTurnoff.webp</file>
-        <file>b.png</file>
-        <file>Bear.png</file>
+        <file>image/SoundOn.webp</file>
+        <file>image/SoundTurnoff.webp</file>
+        <file>image/b.png</file>
+        <file>image/Bear.png</file>
     </qresource>
 </RCC>

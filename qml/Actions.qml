@@ -19,7 +19,7 @@ Item {
     property alias contentsAction: contents
 
     property alias playAction: playv
-    property alias pauseAction: pausev
+    property alias iconname: playv.icon.name
     property alias stopAction: stopv
     property alias rateAction: ratev
     property alias goNextAction: goNext
@@ -57,8 +57,8 @@ Item {
         onTriggered: showFullScreen()
     }
 
-    Action{
-        id:network
+    Action {
+        id: network
         text: qsTr("&Network")
         shortcut: "Ctrl+n"
     }
@@ -85,13 +85,9 @@ Item {
         icon.name: "media-playback-stop"
         shortcut: "Ctrl + s"
     }
+
     Action {
-        id: pausev
-        icon.name: "media-playback-pause"
-        shortcut: "Ctrl + p"
-    }
-    Action{
-        id:goNext
+        id: goNext
         icon.name: "go-next"
     }
     Action {

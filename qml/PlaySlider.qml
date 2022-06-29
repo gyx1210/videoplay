@@ -43,14 +43,14 @@ Item {
     }
     Slider {
         id: mediaSlider
-        anchors.left: startime.right        //将进度条的左边定位到开始的左边
-        anchors.right: endTime.left         //将进度条的右边定位到开始的右边
+        anchors.left: startime.right //将进度条的左边定位到开始的左边
+        anchors.right: endTime.left //将进度条的右边定位到开始的右边
         enabled: mediaPlayer.seekable
         value: mediaPlayer.position / mediaPlayer.duration
         snapMode: Slider.SnapAlways
         onMoved: mediaPlayer.setPosition(value * mediaPlayer.duration)
 
-        background:  Rectangle {
+        background: Rectangle {
             id: rect1
             width: mediaSlider.availableWidth
             height: 10
@@ -59,26 +59,24 @@ Item {
 
             Rectangle {
                 id: rect2
-                width:handleV.x
+                width: handleV.x
                 height: rect1.height
                 color: "#9370db"
                 radius: 7
             }
         }
         handle: Rectangle {
-            id:handleV
+            id: handleV
             x: mediaSlider.visualPosition * (mediaSlider.availableWidth - implicitWidth)
             y: mediaSlider.availableHeight / 2 - implicitHeight / 2
             Image {
                 anchors.fill: parent
-                source: "qrc:/Bear.png"
+                source: "qrc:/image/Bear.png"
             }
             implicitWidth: 25
             implicitHeight: 25
             radius: 13
-            color: mediaSlider.pressed ? "green" : "white"
-
+            color: "#e0ffff"
         }
-
     }
 }

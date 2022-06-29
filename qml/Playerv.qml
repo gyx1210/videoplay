@@ -10,23 +10,21 @@ import QtMultimedia
 
 Item {
     property string sour: ""
+    property bool playstatus: true
     property MediaPlayer mediaplayer: mediaplayer
     property alias rate: mediaplayer.playbackRate
     property alias muted: audioOutput.muted
     property alias volume: audioOutput.volume
 
     function play() {
-        if (mediaplayer.playbackState != mediaplayer.PlayingState)
+        if (playstatus)
+            mediaplayer.pause()
+        else
             mediaplayer.play()
+        playstatus = !playstatus
     }
     function stop() {
-        if (mediaplayer.playbackState != mediaplayer.StoppedState)
-            mediaplayer.stop()
-    }
-    function pause() {
-        if (mediaplayer.playbackState != mediaplayer.PausedState) {
-            mediaplayer.pause()
-        }
+        mediaplayer.stop()
     }
 
     MediaPlayer {

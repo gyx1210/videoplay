@@ -20,7 +20,7 @@ Item {
             id: im
             width: 20
             height: 20
-            source: muted ? "qrc:/SoundTurnoff.webp" : "qrc:/SoundOn.webp"
+            source: muted ? "qrc:/image/SoundTurnoff.webp" : "qrc:/image/SoundOn.webp"
         }
     }
     Slider {

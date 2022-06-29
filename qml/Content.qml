@@ -44,14 +44,15 @@ Item {
         name = name.split("/")
         return name[name.length - 1]
     } //处理目录文件显示的名字
-    function next(){             //将当前项设置为当前项的下一项
-        if(content.currentItem!=null)
-        {
-             var temp  =namehead+filesModel.get(++content.currentIndex).filePath
-             console.log(temp)
-             fpath=temp
-         }
-        else console.log("The currentItem is null")
+    function next() {
+        //将当前项设置为当前项的下一项
+        if (content.currentItem != null) {
+            var temp = namehead + filesModel.get(
+                        ++content.currentIndex).filePath
+            console.log(temp)
+            fpath = temp
+        } else
+            console.log("The currentItem is null")
     }
     ListView {
         id: content
@@ -94,12 +95,13 @@ Item {
                 onTapped: {
                     fpath = namehead + filePath
                     fileContent.visible = false
-                    content.currentIndex=index
+                    content.currentIndex = index
                     console.log(fpath)
                 }
             }
         }
-        ScrollBar.vertical: ScrollBar{//滚动
+        ScrollBar.vertical: ScrollBar {
+            //滚动
             width: 10
             policy: ScrollBar.AsNeeded
         }

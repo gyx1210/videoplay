@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Actions.qml</file>
+        <file>qml/Content.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/Open.qml</file>
+        <file>qml/Playerv.qml</file>
+        <file>qml/PlaySlider.qml</file>
+        <file>qml/SoundSlider.qml</file>
+    </qresource>
+</RCC>
