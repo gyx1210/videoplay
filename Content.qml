@@ -44,17 +44,6 @@ Item {
         name = name.split("/")
         return name[name.length - 1]
     } //处理目录文件显示的名字
-    //    Rectangle{
-    //        id:rec
-    //        anchors.fill: parent
-    //        focus:true
-    //        Keys.onPressed: (event)=>{
-    //            if(event.key===Qt.Key_Escape){
-    //                showNormal()
-    //                event.accepted = true;
-    //            }
-    //        }
-    //    }
     ListView {
         id: content
         anchors.fill: parent
@@ -99,6 +88,10 @@ Item {
                     console.log(fpath)
                 }
             }
+        }
+        ScrollBar.vertical: ScrollBar{//滚动
+            width: 10
+            policy: ScrollBar.AsNeeded
         }
     }
 }

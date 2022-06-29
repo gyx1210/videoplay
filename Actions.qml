@@ -13,6 +13,8 @@ Item {
     property alias fullAction: fullScreen
     property alias cataAction: catalogue
 
+    property alias networkAction: network
+
     property alias aboutAction: about
     property alias contentsAction: contents
 
@@ -52,6 +54,12 @@ Item {
         icon.name: "view-fullscreen"
         shortcut: "Ctrl + f"
         onTriggered: showFullScreen()
+    }
+
+    Action{
+        id:network
+        text: qsTr("&Network")
+        shortcut: "Ctrl+n"
     }
 
     Action {

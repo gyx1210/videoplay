@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtMultimedia
+import QtQuick.Particles
 
 ApplicationWindow {
     id: appWindow
@@ -11,7 +12,43 @@ ApplicationWindow {
     height: 800
 
     background: Rectangle {
+        id:ro
         color: "black"
+        ParticleSystem{id:particleSystem}//粒子系统
+        Emitter{//发射器
+            id:emitter
+            anchors.centerIn: parent
+            width: parent.width;height: parent.height
+            system: particleSystem
+
+            emitRate: 10//发射速率（每秒发射多少个粒子，默认值为10）
+            lifeSpan: 2500;//粒子生命周期，单位毫秒（默认值为1000）
+            lifeSpanVariation: 500//粒子生命周期误差区间
+            size: 25;//粒子初始大小
+            endSize: 50//粒子生命周期结束时大小（默认值为-1）
+
+            velocity: AngleDirection{//角度定义方向//velocity速度
+                angle: 30//发射角度
+                angleVariation: 15
+                magnitude: 50//粒子速度
+                magnitudeVariation: 20
+            }
+            acceleration: AngleDirection {//acceleration加速度
+                angle: -90
+                magnitude: 25
+            }
+
+        }
+        ImageParticle{//粒子画笔
+            source: "qrc:/b.png"
+            system: particleSystem
+            color: "yellow"
+            colorVariation: 0.6
+            rotation: 30//顺时针旋转
+            rotationVariation: 5//旋转误差
+            rotationVelocity: 45//旋转速度
+            rotationVelocityVariation: 15
+        }
     }
 
     menuBar: MenuBar {
@@ -43,6 +80,21 @@ ApplicationWindow {
                 action: actions.cataAction
             }
         }
+        Menu{
+            title: qsTr("&Model")
+            Menu{
+                title: "&Local"
+                MenuItem {
+                    action: actions.openAction
+                }
+                MenuItem {
+                    action: actions.folderAction
+                }
+            }
+            MenuItem{
+                action: actions.networkAction
+            }
+        }
 
         Menu {
             title: qsTr("&Help")
@@ -70,6 +122,9 @@ ApplicationWindow {
     }
     footer: ToolBar {
         height: 50
+        background: Rectangle {
+            color: "#e0ffff"
+        }
         ColumnLayout {
             anchors.fill: parent
             PlaySlider {
@@ -218,7 +273,7 @@ ApplicationWindow {
         background: Rectangle {
             implicitWidth: 50
             implicitHeight: 50
-            color: "white"
+            color: "#e0ffff"
         }
 
         contentItem: ColumnLayout{
