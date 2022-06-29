@@ -69,11 +69,15 @@ Item {
             id:handleV
             x: mediaSlider.visualPosition * (mediaSlider.availableWidth - implicitWidth)
             y: mediaSlider.availableHeight / 2 - implicitHeight / 2
-            implicitWidth: 15
-            implicitHeight: 20
+            Image {
+                anchors.fill: parent
+                source: "qrc:/Bear.png"
+            }
+            implicitWidth: 25
+            implicitHeight: 25
             radius: 13
             color: mediaSlider.pressed ? "green" : "white"
-            border.color: "black"
+
         }
 
     }
