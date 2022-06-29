@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtMultimedia
+import QtQuick.Particles
 
 Item {
     id: root
@@ -42,11 +43,38 @@ Item {
     }
     Slider {
         id: mediaSlider
-        anchors.left: startime.right
-        anchors.right: endTime.left
+        anchors.left: startime.right        //将进度条的左边定位到开始的左边
+        anchors.right: endTime.left         //将进度条的右边定位到开始的右边
         enabled: mediaPlayer.seekable
         value: mediaPlayer.position / mediaPlayer.duration
         snapMode: Slider.SnapAlways
         onMoved: mediaPlayer.setPosition(value * mediaPlayer.duration)
+
+        background:  Rectangle {
+            id: rect1
+            width: mediaSlider.availableWidth
+            height: 10
+            radius: 7
+            color: "#87cefa"
+
+            Rectangle {
+                id: rect2
+                width:handleV.x
+                height: rect1.height
+                color: "#9370db"
+                radius: 7
+            }
+        }
+        handle: Rectangle {
+            id:handleV
+            x: mediaSlider.visualPosition * (mediaSlider.availableWidth - implicitWidth)
+            y: mediaSlider.availableHeight / 2 - implicitHeight / 2
+            implicitWidth: 15
+            implicitHeight: 20
+            radius: 13
+            color: mediaSlider.pressed ? "green" : "white"
+            border.color: "black"
+        }
+
     }
 }

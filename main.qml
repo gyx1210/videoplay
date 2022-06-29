@@ -148,6 +148,9 @@ ApplicationWindow {
                     action: actions.rateAction
                 }
                 ToolButton {
+                    action: actions.goNextAction
+                }
+                ToolButton {
                     SoundSlider {
                         id: soundSlider
                     }
@@ -176,6 +179,10 @@ ApplicationWindow {
         rateAction.onTriggered: {
             popup.open()
         }
+        goNextAction.onTriggered: {
+            content.next()
+        }
+
         Popup {
             id: popup
             padding: 0

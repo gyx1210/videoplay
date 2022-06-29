@@ -22,6 +22,7 @@ Item {
     property alias pauseAction: pausev
     property alias stopAction: stopv
     property alias rateAction: ratev
+    property alias goNextAction: goNext
 
     Action {
         id: open
@@ -88,6 +89,10 @@ Item {
         id: pausev
         icon.name: "media-playback-pause"
         shortcut: "Ctrl + p"
+    }
+    Action{
+        id:goNext
+        icon.name: "go-next"
     }
     Action {
         id: ratev
