@@ -139,11 +139,17 @@ ApplicationWindow {
             }
             RowLayout {
                 id: button
+                ToolButton{
+                    action: actions.backAction
+                }
                 ToolButton {
                     action: actions.playAction
                 }
                 ToolButton {
                     action: actions.stopAction
+                }
+                ToolButton{
+                    action: actions.fastAction
                 }
                 ToolButton {
                     id: rate
@@ -157,6 +163,7 @@ ApplicationWindow {
                         id: soundSlider
                     }
                 }
+
             }
         }
     }
@@ -179,7 +186,12 @@ ApplicationWindow {
         playAction.onTriggered: {
             playerv.play()
             content.visible = false
-
+        }
+        fastAction.onTriggered: {
+            playslider.fastForward()
+        }
+        backAction.onTriggered: {
+            playslider.backOff()
         }
         rateAction.onTriggered: {
             popup.open()
@@ -198,7 +210,7 @@ ApplicationWindow {
             netModel = true
         }
     }
-    Popup { //建立右击菜单
+    Popup { //建立倍速弹出窗口
         id: popup
         padding: 0
         background: Rectangle {
@@ -313,4 +325,7 @@ ApplicationWindow {
         //c++组件获取网络视频
         id: iv
     }
+//    SoundSlider {
+//        id: soundSlider
+//    }
 }

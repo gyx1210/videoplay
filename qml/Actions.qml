@@ -17,6 +17,8 @@ Item {
     property alias stopAction: stopv
     property alias rateAction: ratev
     property alias goNextAction: goNext
+    property alias fastAction: fastforward
+    property alias backAction: backoff
 
     Action {
         id: open
@@ -63,12 +65,20 @@ Item {
         icon.name: "media-playback-stop"
         shortcut: "Ctrl + s"
     }
-    Action {
-        id: goNext
-        icon.name: "go-next"
+    Action{
+        id:fastforward
+        icon.name: "media-skip-forward"
+    }
+    Action{
+        id:backoff
+        icon.name:"media-skip-backward"
     }
     Action {
         id: ratev
         text: qsTr("rate")
+    }
+    Action {
+        id: goNext
+        icon.name: "go-next"
     }
 }
