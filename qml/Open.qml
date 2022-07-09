@@ -20,7 +20,7 @@ Item {
     function openAboutDialog() {
         about.open()
     }
-    FileDialog {
+    FileDialog {//文件打开
         id: fileOpen
         title: "Select some video files"
         currentFolder: StandardPaths.writableLocation(
@@ -28,7 +28,7 @@ Item {
         fileMode: FileDialog.OpenFiles
         nameFilters: ["Video files (*.mp4)"]
     }
-    FolderDialog {
+    FolderDialog {//目录打开
         id: folderOpen
         currentFolder: StandardPaths.writableLocation(
                            StandardPaths.DocumentsLocation)
@@ -41,7 +41,7 @@ Item {
         title: qsTr("About")
         Label {
             anchors.fill: parent
-            text: qsTr("A QML Videos Viewer\n")
+            text: qsTr("A QML Videos Viewer\n 作者：龚颜鲜 吴雪莲 魏美玉")
             horizontalAlignment: Text.AlignHCenter
         }
     }

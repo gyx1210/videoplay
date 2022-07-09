@@ -14,9 +14,6 @@ Item {
     property var namehead
     property bool addFile: false //用多选文件添加文件，不是目录打开
     //用于控制路径名，folder打开路径名有问题，视频播放不了
-    function setVedioFillMode() {
-        content.fillMode = arguments[0]
-    }
     function setFilesModel() {
 
         for (var i = 0; i < arguments[0].length; i++) {
@@ -31,14 +28,14 @@ Item {
         content.model = filesModel
         content.currentIndex = 0
         namehead = ""
-    }
+    }//建立多选文件的目录
     function setFolderModel() {
         filesModel.clear()
         folderModel.folder = arguments[0]
         content.model = folderModel
         content.currentIndex = 0
         namehead = "file://"
-    }
+    }//建立目录打开的目录
     function nameRe(path) {
         var name = namehead + path
         name = name.split("/")
@@ -53,7 +50,7 @@ Item {
             fpath = temp
         } else
             console.log("The currentItem is null")
-    }
+    }//跳转下一个视频的路径
     ListView {
         id: content
         anchors.fill: parent
@@ -96,9 +93,8 @@ Item {
                     fpath = namehead + filePath
                     fileContent.visible = false
                     content.currentIndex = index
-                    console.log(fpath)
                 }
-            }
+            }//点击目录时，跳转视频
         }
         ScrollBar.vertical: ScrollBar {
             //滚动

@@ -9,12 +9,12 @@ import QtQuick.Layouts
 import QtMultimedia
 
 Item {
-    property string sour: ""
-    property bool playstatus: true
-    property MediaPlayer mediaplayer: mediaplayer
-    property alias rate: mediaplayer.playbackRate
-    property alias muted: audioOutput.muted
-    property alias volume: audioOutput.volume
+    property string sour: ""//播放文件的路径
+    property bool playstatus: true//播放状态
+    property alias mediaplayer: mediaplayer
+    property alias rate: mediaplayer.playbackRate//播放速率
+    property alias muted: audioOutput.muted//是否静音
+    property alias volume: audioOutput.volume//声音大小
 
     function play() {
         if (playstatus)
@@ -35,7 +35,10 @@ Item {
         playbackRate: 1
         onSourceChanged: {
             mediaplayer.play()
+            playstatus=true
+            console.log(mediaplayer.source)
         }
+
     }
     AudioOutput {
         id: audioOutput

@@ -9,15 +9,9 @@ Item {
     property alias openAction: open
     property alias folderAction: folder
     property alias exitAction: exit
-
-    property alias fullAction: fullScreen
     property alias cataAction: catalogue
-
     property alias networkAction: network
-
     property alias aboutAction: about
-    property alias contentsAction: contents
-
     property alias playAction: playv
     property alias iconname: playv.icon.name
     property alias stopAction: stopv
@@ -43,18 +37,10 @@ Item {
         icon.name: "application-exit"
         shortcut: "Ctrl + e"
     }
-
     Action {
         id: catalogue
         text: qsTr("Hidesho&wcata")
         shortcut: "Ctrl + w"
-    }
-    Action {
-        id: fullScreen
-        text: qsTr("&FullScreen")
-        icon.name: "view-fullscreen"
-        shortcut: "Ctrl + f"
-        onTriggered: showFullScreen()
     }
 
     Action {
@@ -62,14 +48,6 @@ Item {
         text: qsTr("&Network")
         shortcut: "Ctrl+n"
     }
-
-    Action {
-        id: contents
-        text: qsTr("&Contents")
-        icon.name: "help-contents"
-        shortcut: "Ctrl + c"
-    }
-
     Action {
         id: about
         text: qsTr("&About")
@@ -85,7 +63,6 @@ Item {
         icon.name: "media-playback-stop"
         shortcut: "Ctrl + s"
     }
-
     Action {
         id: goNext
         icon.name: "go-next"

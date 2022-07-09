@@ -7,8 +7,8 @@ import VideoInternet
 
 ApplicationWindow {
     id: appWindow
-    property bool fullScreen: false
-    property bool netModel: false
+    property bool fullScreen: false//判断是否全屏
+    property bool netModel: false//判断是否为网络播放
     visible: true
     width: 1000
     height: 800
@@ -57,7 +57,7 @@ ApplicationWindow {
             rotationVelocity: 45 //旋转速度
             rotationVelocityVariation: 15
         }
-    }
+    }//做的背景
 
     menuBar: MenuBar {
         id: appMenuBar
@@ -82,9 +82,6 @@ ApplicationWindow {
             title: qsTr("&View")
             //using Action object as menu item directly
             MenuItem {
-                action: actions.fullAction
-            }
-            MenuItem {
                 action: actions.cataAction
             }
         }
@@ -106,7 +103,7 @@ ApplicationWindow {
 
         Menu {
             title: qsTr("&Help")
-            contentData: [actions.contentsAction, actions.aboutAction]
+            contentData: [ actions.aboutAction]
         }
     }
 
@@ -182,10 +179,7 @@ ApplicationWindow {
         playAction.onTriggered: {
             playerv.play()
             content.visible = false
-            if (playerv.playstatus)
-                iconname = "media-playback-start"
-            else
-                iconname = "media-playback-pause"
+
         }
         rateAction.onTriggered: {
             popup.open()
@@ -196,36 +190,6 @@ ApplicationWindow {
             else
                 content.next()
         }
-
-        Popup {
-            id: popup
-            padding: 0
-            background: Rectangle {
-                implicitWidth: 20
-                implicitHeight: 20
-
-                color: "white"
-            }
-            contentItem: ColumnLayout {
-                Button {
-                    text: qsTr("x1")
-                    onClicked: {
-                        playerv.rate = 1
-                        popup.close()
-                        actions.rateAction.text = qsTr("rate_x1")
-                    }
-                }
-                Button {
-                    text: qsTr("x2")
-                    onClicked: {
-                        playerv.rate = 2
-                        popup.close()
-                        actions.rateAction.text = qsTr("rate_x2")
-                    }
-                }
-            }
-        }
-
         aboutAction.onTriggered: fileo.openAboutDialog()
         cataAction.onTriggered: {
             content.visible = !content.visible //make a hidden directory
@@ -234,7 +198,35 @@ ApplicationWindow {
             netModel = true
         }
     }
-    Open {
+    Popup { //建立右击菜单
+        id: popup
+        padding: 0
+        background: Rectangle {
+            implicitWidth: 20
+            implicitHeight: 20
+
+            color: "white"
+        }
+        contentItem: ColumnLayout {
+            Button {
+                text: qsTr("x1")
+                onClicked: {
+                    playerv.rate = 1
+                    popup.close()
+                    actions.rateAction.text = qsTr("rate_x1")
+                }
+            }
+            Button {
+                text: qsTr("x2")
+                onClicked: {
+                    playerv.rate = 2
+                    popup.close()
+                    actions.rateAction.text = qsTr("rate_x2")
+                }
+            }
+        }
+    }
+    Open {//本地文件选的方式目录打开，文件打开
         id: fileo
         fileOpenDialog.onAccepted: {
             content.setFilesModel(fileOpenDialog.selectedFiles)
@@ -248,37 +240,45 @@ ApplicationWindow {
             content.addFile = false
         }
     }
-    Content {
+    Content {//视频目录
         id: content
         anchors.fill: parent
         visible: true
         z: playerv.z + 1
     }
 
-    Playerv {
+    Playerv {//播放器
         id: playerv
         anchors.fill: parent
         sour: netModel ? iv.urllink() : content.fpath
         volume: soundSlider.volume
         muted: soundSlider.muted
-    }
-    TapHandler {
-        onDoubleTapped: {
-            if (fullScreen = !fullScreen) {
-                showFullScreen()
-            } else {
-                showNormal()
+
+        TapHandler {//点击事件
+            onDoubleTapped: {//双击全屏
+                if (!fullScreen) {
+                    showFullScreen()
+                    fullScreen = !fullScreen
+                } else {
+                    showNormal()
+                    fullScreen = !fullScreen
+                }
             }
         }
+        onPlaystatusChanged: {
+            if (playerv.playstatus)
+               actions.iconname = "media-playback-start"
+            else
+               actions.iconname = "media-playback-pause"
+        }
     }
-    TapHandler {
+    TapHandler {//右击弹出菜单
         acceptedButtons: Qt.RightButton
         onTapped: {
             po.open()
         }
     }
-
-    Popup {
+    Popup {//建立右击菜单
         id: po
         opacity: 1
         x: parent.width / 2
@@ -298,21 +298,15 @@ ApplicationWindow {
                 action: actions.folderAction
             }
             MenuItem {
+                action: actions.aboutAction
+            }
+            MenuItem {
                 action: actions.exitAction
                 onTriggered: appWindow.close()
             }
-            MenuItem {
-                action: actions.fullAction
-            }
-            MenuItem {
-                action: actions.cataAction
-            }
-            MenuItem {
-                action: actions.contentsAction
-            }
-            MenuItem {
-                action: actions.aboutAction
-            }
+
+
+
         }
     }
     VInternet {
