@@ -10,7 +10,12 @@ Item {
 
     required property MediaPlayer mediaPlayer
 
-
+    function fastForward(){//实现快进
+         mediaPlayer.position+=5000
+    }
+    function backOff(){//实现快退
+        mediaPlayer.position-=5000
+    }
 
     Text {
         id: startime
@@ -81,11 +86,6 @@ Item {
             color: "#e0ffff"
         }
     }
-    function fastForward(){//实现快进
-         mediaPlayer.position+=5000
-    }
-    function backOff(){//实现快退
-        mediaPlayer.position-=5000
-    }
+
 }
 

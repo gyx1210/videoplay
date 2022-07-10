@@ -325,7 +325,4 @@ ApplicationWindow {
         //c++组件获取网络视频
         id: iv
     }
-//    SoundSlider {
-//        id: soundSlider
-//    }
 }
